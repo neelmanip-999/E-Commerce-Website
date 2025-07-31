@@ -1,0 +1,31 @@
+MVC Architecture (Modal View Controller)
+
+MVC stands for Model-View-Controller.
+
+It's a software design pattern used for developing user interfaces.
+
+The goal is to separate concerns: business logic, UI, and input control.
+
+Model handles data and business logic.
+
+View is responsible for the UI or output.
+
+Controller handles user input and interactions.
+
+Model notifies the View when data changes.
+
+View renders data received from the Model.
+
+Controller updates the Model based on user actions.
+
+This separation improves code maintainability and scalability.
+
+Example: In a web app, Model = database logic.
+
+View = HTML/CSS UI presented to users.
+
+Controller = handles HTTP requests and calls Model/View.
+
+MVC is commonly used in frameworks like Spring (Java), Django (Python), and ASP.NET.
+
+It allows teams to work on Model, View, and Controller independently.

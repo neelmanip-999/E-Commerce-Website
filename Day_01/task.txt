@@ -1,0 +1,18 @@
+1. Basic Server Created and Tested
+2. DB Connected (Server + DB) interacted.
+3. Model Collection to be Made
+// whenever we create a model we keep in mind the term Separation of concern.(matlab jiska jo kaam hai woh sirf wahi karega).
+//views folder is for template
+//public folder is for static files
+// Model folder is for Collections and schema.
+
+Model --> Product, User, Cart, Reviews
+
+Note --> whenever we create a file in models we usually start with capital letter.
+
+4. Added Dummy or Initial Data i.e seed.js
+for this we use insertMany([]) which accepts an array and we add 5 to 6 dummy product in it.
+
+5. Showing the products from the DB.(.get and .post). Routes Folder Loaded.....
+
+
