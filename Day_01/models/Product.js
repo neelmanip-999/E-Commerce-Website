@@ -1,23 +1,28 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); // import mongoose
+
+// define product schema (structure of product data)
 const productSchema = new mongoose.Schema({
     name: {
-        type:String,
-        trim:true,
-        required:true
+        type:String,      // product name is a string
+        trim:true,        // removes extra spaces
+        required:true     // must be provided
     } , 
     img:{
-        type:String,
+        type:String,      // image URL
         trim:true
     } ,
     price: {
-        type:Number,
-        min:0,
+        type:Number,      // product price is a number
+        min:0,            // cannot be negative
         required:true
     } ,
     desc: {
-        type:String,
+        type:String,      // description
         trim:true
     }
 })
+
+// create model (to interact with products collection in DB)
 let Product = mongoose.model('Product' , productSchema);
-module.exports = Product;
+
+module.exports = Product; // export for use in other files

@@ -1,12 +1,12 @@
-const express = require('express');
-const app = express();
-const path = require('path');
-const mongoose = require('mongoose');
-const seedDB = require('./seed')
-const productRoutes = require('./routes/product')
+const express = require('express'); // framework to build web server
+const app = express();              // create express app
+const path = require('path');       // helps handle file paths
+const mongoose = require('mongoose'); // for MongoDB connection
+const seedDB = require('./seed')    // script to insert dummy data
+const productRoutes = require('./routes/product') // routes for products
 
 
-
+// connect to MongoDB database "shopping-app"
 mongoose.connect('mongodb://127.0.0.1:27017/shopping-app')
 .then(()=>{
     console.log("DB connected successfully")
@@ -17,36 +17,23 @@ mongoose.connect('mongodb://127.0.0.1:27017/shopping-app')
 })
 
 
-app.set('view engine' , 'ejs');
-app.set('views' , path.join(__dirname , 'views')); // views folder 
-app.use(express.static(path.join(__dirname , 'public'))); // public folder
+// ---------- App Config ----------
+app.set('view engine' , 'ejs'); // use EJS templates for HTML rendering
+app.set('views' , path.join(__dirname , 'views')); // where views are stored
+app.use(express.static(path.join(__dirname , 'public'))); 
+// "public" folder will serve static files like css, js, images
 
 
-// seeding database
-// seedDB()
-
-app.use(productRoutes); //so that harr incoming request ke liye path check kiya jaae
+// ---------- Database Seeder ----------
+// seedDB()   // (uncomment to fill DB with sample products)
 
 
+// ---------- Routes ----------
+app.use(productRoutes); 
+// all product-related routes handled here (like /products)
 
+
+// ---------- Server ----------
 app.listen(8080 , ()=>{
     console.log("server connected at port 8080")
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

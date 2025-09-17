@@ -1,26 +1,43 @@
-<% layout('layouts/boilerplate') %>
+<% layout('layouts/boilerplate') %> <!-- use boilerplate layout -->
 
-<%- include('../partials/navbar') %>    
+<%- include('../partials/navbar') %> <!-- include navbar -->
 
 <div class="row">
             
-            <div class="col-lg-6 mt-3">
-                <div class="card shadow mx-auto" style="width: 18rem;">
-                    <img src="<%=foundProduct.img%>" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h2 class="card-title"><%=foundProduct.name%></h2>
-                      <h5 class="card-title"><%=foundProduct.price%></h5>
-                      <p class="card-text"><%=foundProduct.desc%></p>
-                      <a href="/products/<%=foundProduct._id%>/edit" class="btn btn-sm btn-light">Edit</a>
-                      <a href="#" class="btn btn-sm btn-secondary">add to Cart</a>
-                      <a href="#" class="btn btn-sm btn-success">Buy Product</a>
-                    </div>
-                </div>
-            </div>
+    <!-- left column: product details -->
+    <div class="col-lg-6 mt-3">
+        <div class="card shadow mx-auto" style="width: 18rem;">
 
-            <div class="col-lg-6">
-                <h1 class="display-5">Leave a Review</h1>
+            <!-- product image -->
+            <img src="<%=foundProduct.img%>" class="card-img-top" alt="...">
+
+            <div class="card-body">
+                <!-- product name -->
+                <h2 class="card-title"><%=foundProduct.name%></h2>
+
+                <!-- product price -->
+                <h5 class="card-title"><%=foundProduct.price%></h5>
+
+                <!-- product description -->
+                <p class="card-text"><%=foundProduct.desc%></p>
+
+                <!-- edit product button -->
+                <a href="/products/<%=foundProduct._id%>/edit" class="btn btn-sm btn-light">Edit</a>
+
+                <!-- add to cart button -->
+                <a href="#" class="btn btn-sm btn-secondary">add to Cart</a>
+
+                <!-- buy product button -->
+                <a href="#" class="btn btn-sm btn-success">Buy Product</a>
             </div>
+        </div>
+    </div>
+
+    <!-- right column: review section -->
+    <div class="col-lg-6">
+        <h1 class="display-5">Leave a Review</h1>
+        <!-- review form will be added here later -->
+    </div>
 
 </div>
 

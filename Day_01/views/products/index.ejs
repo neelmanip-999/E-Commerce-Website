@@ -9,12 +9,12 @@
 <body>
     
     <ul>
-        <% for(let item of products){ %>
+        <% for(let item of products){ %> <!-- loop through products -->
             <li>
-                <img src="<%=item.img%>" alt="">
-                <h3><%=item.name%></h3>
-                <h5><%=item.price%></h5>
-                <p><%=item.desc%></p>
+                <img src="<%=item.img%>" alt=""> <!-- product image -->
+                <h3><%=item.name%></h3>          <!-- product name -->
+                <h5><%=item.price%></h5>        <!-- product price -->
+                <p><%=item.desc%></p>           <!-- product description -->
             </li>
         <% } %>
     </ul>

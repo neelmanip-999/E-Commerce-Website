@@ -1,12 +1,11 @@
-const express = require('express');
-const Product = require('../models/Product');
-const router = express.Router() //mini instance
+const express = require('express'); // import express
+const Product = require('../models/Product'); // import product model
+const router = express.Router() // create mini router
 
-
+// route: get all products
 router.get('/products' , async(req,res)=>{
-    let products = await Product.find({});
-    res.render('products/index' , {products});
+    let products = await Product.find({}); // fetch all products from DB
+    res.render('products/index' , {products}); // render view with products
 })
 
-
-module.exports = router;
+module.exports = router; // export router
