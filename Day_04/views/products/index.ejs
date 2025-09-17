@@ -1,27 +1,38 @@
-<% layout('layouts/boilerplate') %>
+<% layout('layouts/boilerplate') %> <!-- extends the main boilerplate layout -->
 
-<%- include('../partials/navbar') %>    
+<%- include('../partials/navbar') %>  <!-- include navbar partial -->
 
 <div class="row">
 
-        <% for(let item of products){ %>
-            
-            <div class="col-lg-4 mt-3">
-                <div class="card shadow mx-auto" style="width: 18rem;">
-                    <img src="<%=item.img%>" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h2 class="card-title"><%=item.name%></h2>
-                      <h5 class="card-title"><%=item.price%></h5>
-                      <p class="card-text"><%=item.desc%></p>
-                      <a href="/products/<%=item._id%>" class="btn btn-info">View Product</a>
-                      <form class="d-inline-block" action="/products/<%=item._id%>?_method=DELETE" method="POST">
+    <% for(let item of products){ %>  <!-- loop through all products -->
+
+        <div class="col-lg-4 mt-3"> <!-- each product in a responsive column -->
+            <div class="card shadow mx-auto" style="width: 18rem;">
+                
+                <!-- Product Image -->
+                <img src="<%=item.img%>" class="card-img-top" alt="...">
+
+                <div class="card-body">
+                    <!-- Product Name -->
+                    <h2 class="card-title"><%=item.name%></h2>
+                    <!-- Product Price -->
+                    <h5 class="card-title"><%=item.price%></h5>
+                    <!-- Product Description -->
+                    <p class="card-text"><%=item.desc%></p>
+
+                    <!-- View Product Button -->
+                    <a href="/products/<%=item._id%>" class="btn btn-info">View Product</a>
+
+                    <!-- Delete Product Form -->
+                    <!-- Uses method-override to send DELETE request -->
+                    <form class="d-inline-block" action="/products/<%=item._id%>?_method=DELETE" method="POST">
                         <button class="btn btn-sm btn-danger">Delete</button>
-                      </form>
-                    </div>
+                    </form>
                 </div>
             </div>
+        </div>
 
-        <% } %>
+    <% } %>
 </div>
 
 </body>

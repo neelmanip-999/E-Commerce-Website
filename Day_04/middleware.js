@@ -1,30 +1,32 @@
-const {productSchema , reviewSchema} = require('./schema')
+const {productSchema , reviewSchema} = require('./schema') // import Joi schemas for product & review validation
 
 
+// 🟢 Middleware to validate product data from forms
 const validateProduct = (req,res,next)=>{
-    const {name,img,price,desc} = req.body;
-    const {error} = productSchema.validate({name,img,price,desc})
-    if(error){
-        return res.render('error');
-    }
-    next();
-}
+    const {name,img,price,desc} = req.body; // destructure product data from request body
+    const {error} = productSchema.validate({name,img,price,desc}); // validate against productSchema
 
-const validateReview = ()=>{
-    const {rating,comment} = req.body;
-    const {error} = productSchema.validate({rating,comment})
     if(error){
-        return res.render('error');
+        // if validation fails, render error page
+        return res.render('error'); 
     }
-    next();
+
+    next(); // if valid, proceed to next middleware or route handler
 }
 
 
-module.exports = {validateReview , validateProduct}
+// 🟢 Middleware to validate review data from forms
+const validateReview = (req,res,next)=>{  // fixed missing req,res,next parameters
+    const {rating,comment} = req.body; // destructure review data from request body
+    const {error} = reviewSchema.validate({rating,comment}); // validate against reviewSchema
+
+    if(error){
+        // if validation fails, render error page
+        return res.render('error');
+    }
+
+    next(); // if valid, proceed to next middleware or route handler
+}
 
 
-
-
-
-
-
+module.exports = {validateReview , validateProduct} // export middleware to use in routes

@@ -5,19 +5,25 @@
 <div class="row">
     <div class="col-6 mx-auto">
 
+        <!-- form to edit a product -->
+        <!-- method PATCH is used via method-override in Express -->
         <form action="/products/<%=foundProduct._id%>?_method=PATCH" method="POST" class="needs-validation" novalidate>
 
+            <!-- Product Name Field -->
             <div class="mb-3">
                 <label for="naam">Name: </label>
                 <input type="text" class="form-control" name="name" id="naam" placeholder="Name of the product" value="<%=foundProduct.name%>" required>
+                <!-- feedback for valid input -->
                 <div class="valid-feedback">
                     Looks good!
                 </div>
+                <!-- feedback for invalid input -->
                 <div class="invalid-feedback">
                     Please enter the name field.
                 </div>
             </div>
 
+            <!-- Product Image URL Field -->
             <div class="mb-3">
                 <label for="img">Image: </label>
                 <input type="text" class="form-control" name="img" id="img" placeholder="Image URL of the product" value="<%=foundProduct.img%>" required>
@@ -29,6 +35,7 @@
                 </div>
             </div>
 
+            <!-- Product Price Field -->
             <div class="mb-3">
                 <label for="paisa">Price: </label>
                 <input type="number" class="form-control" name="price" id="paisa" placeholder="price of the product" value="<%=foundProduct.price%>" required>
@@ -40,6 +47,7 @@
                 </div>
             </div>
 
+            <!-- Product Description Field -->
             <div class="mb-3">
                 <label for="desc">Description: </label>
                 <textarea name="desc" id="desc" rows="5" placeholder="Description of product" required> <%=foundProduct.desc%> </textarea>
@@ -50,33 +58,33 @@
                     Please enter the Description field.
                 </div>
             </div>
+
+            <!-- Submit Button -->
             <button class="btn btn-sm btn-success" type="submit">Edit Product</button>
 
         </form>
 
     </div>
-        
 </div>
 
 <script>
-    // iife(immidiately invoked functional expression)
+    // Immediately Invoked Function Expression (IIFE) to apply Bootstrap custom validation
     (() => {
-    'use strict'
+        'use strict'
 
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll('.needs-validation')
+        // Select all forms with class 'needs-validation'
+        const forms = document.querySelectorAll('.needs-validation')
 
-    // Loop over them and prevent submission
-    Array.from(forms).forEach(form => {
-        form.addEventListener('submit', event => {
-        if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-        }
-
-        form.classList.add('was-validated')
-        }, false)
-    })
+        // Loop through each form and prevent submission if invalid
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) { // check form validity
+                    event.preventDefault()    // prevent form submission
+                    event.stopPropagation()   // stop event from bubbling
+                }
+                form.classList.add('was-validated') // add Bootstrap validation styling
+            }, false)
+        })
     })()
 </script>
 

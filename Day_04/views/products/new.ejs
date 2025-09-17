@@ -1,24 +1,28 @@
-<% layout('layouts/boilerplate') %>
+<% layout('layouts/boilerplate') %> <!-- use main boilerplate layout -->
 
-<%- include('../partials/navbar') %>    
+<%- include('../partials/navbar') %>  <!-- include navbar partial -->
 
 <div class="row">
-    <div class="col-6 mx-auto">
+    <div class="col-6 mx-auto"> <!-- center form in the middle -->
 
+        <!-- form to add a new product -->
+        <!-- class 'needs-validation' enables Bootstrap custom validation -->
+        <!-- 'novalidate' disables native HTML5 validation to use custom styles -->
         <form action="/products" method="POST" class="needs-validation" novalidate >
 
-
+            <!-- Product Name Field -->
             <div class="mb-3">
                 <label for="naam">Name: </label>
                 <input type="text" class="form-control" name="name" id="naam" placeholder="Name of the product" required>
                 <div class="valid-feedback">
-                    Looks good!
+                    Looks good! <!-- shown when input is valid -->
                 </div>
                 <div class="invalid-feedback">
-                    Please enter the name field.
+                    Please enter the name field. <!-- shown when input is invalid -->
                 </div>
             </div>
 
+            <!-- Product Image URL Field -->
             <div class="mb-3">
                 <label for="img">Image: </label>
                 <input type="text" class="form-control" name="img" id="img" placeholder="Image URL of the product" required>
@@ -30,6 +34,7 @@
                 </div>
             </div>
 
+            <!-- Product Price Field -->
             <div class="mb-3">
                 <label for="paisa">Price: </label>
                 <input type="number" class="form-control" name="price" id="paisa" placeholder="price of the product" required>
@@ -41,6 +46,7 @@
                 </div>
             </div>
 
+            <!-- Product Description Field -->
             <div class="mb-3">
                 <label for="desc">Description: </label>
                 <textarea name="desc" id="desc" rows="5" placeholder="Description of product" required></textarea>
@@ -51,38 +57,38 @@
                     Please enter the Description field.
                 </div>
             </div>
+
+            <!-- Submit Button -->
             <button class="btn btn-sm btn-success" type="submit">Add Product</button>
 
         </form>
 
     </div>
-        
 </div>
 
-
 <script>
-    // iife(immidiately invoked functional expression)
+    // Immediately Invoked Function Expression (IIFE) to initialize Bootstrap validation
     (() => {
-    'use strict'
+        'use strict'
 
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll('.needs-validation')
+        // select all forms with class 'needs-validation'
+        const forms = document.querySelectorAll('.needs-validation')
 
-    // Loop over them and prevent submission
-    Array.from(forms).forEach(form => {
-        form.addEventListener('submit', event => {
-        if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-        }
+        // Loop through each form
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                // prevent submission if the form is invalid
+                if (!form.checkValidity()) {
+                    event.preventDefault()    // stop the form from submitting
+                    event.stopPropagation()   // stop event bubbling
+                }
 
-        form.classList.add('was-validated')
-        }, false)
-    })
+                // add Bootstrap class to show validation feedback
+                form.classList.add('was-validated')
+            }, false)
+        })
     })()
 </script>
 
 </body>
 </html>
-
-
