@@ -3,13 +3,12 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 const seedDB = require('./seed')
-const ejsMate = require('ejs-mate');
-const methodOverride = require('method-override')
-const productRoutes = require('./routes/product')
-const reviewRoutes = require('./routes/review')
+const ejsMate = require('ejs-mate'); // layout engine for ejs
+const methodOverride = require('method-override') // to support PUT & DELETE in forms
+const productRoutes = require('./routes/product') // product-related routes
+const reviewRoutes = require('./routes/review')   // review-related routes
 
-
-
+// connect to MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/shopping-sam-app')
 .then(()=>{
     console.log("DB connected successfully")
@@ -19,38 +18,24 @@ mongoose.connect('mongodb://127.0.0.1:27017/shopping-sam-app')
     console.log(err)
 })
 
+// setting up ejs-mate as view engine
 app.engine('ejs' , ejsMate);
 app.set('view engine' , 'ejs');
-app.set('views' , path.join(__dirname , 'views')); // views folder 
-app.use(express.static(path.join(__dirname , 'public'))); // public folder
-app.use(express.urlencoded({extended:true}));
-app.use(methodOverride('_method'));
+app.set('views' , path.join(__dirname , 'views')); // set path to "views" folder
 
-// seeding database
+// middleware
+app.use(express.static(path.join(__dirname , 'public'))); // serve static files (CSS, JS, images)
+app.use(express.urlencoded({extended:true})); // parse form data (req.body)
+app.use(methodOverride('_method')); // allow overriding methods via query string (?_method=PUT/DELETE)
+
+// seeding database (uncomment to run seed script once)
 // seedDB()
 
-app.use(productRoutes); //so that harr incoming request ke liye path check kiya jaae
-app.use(reviewRoutes);  //so that harr incoming request ke liye path check kiya jaae
+// route middlewares
+app.use(productRoutes); // all product routes
+app.use(reviewRoutes);  // all review routes
 
-
+// start server
 app.listen(8080 , ()=>{
     console.log("server connected at port 8080")
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
